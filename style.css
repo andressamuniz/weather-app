@@ -21,6 +21,7 @@ body {
   padding-left: 50px;
   display: block;
   color: #34495e;
+  text-transform: capitalize;
   font-family: "Roboto", sans-serif;
 }
 .humidity {
