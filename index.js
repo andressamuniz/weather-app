@@ -32,7 +32,7 @@ function getWeatherData(response) {
   let humidity = response.data.main.humidity;
   setHumidity(humidity);
 
-  let weatherDescription = response.data.weather;
+  let weatherDescription = response.data.weather[0].description;
   setWeatherDescription(weatherDescription);
 }
 
