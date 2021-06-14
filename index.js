@@ -35,7 +35,10 @@ function getWeatherData(response) {
   let weatherDescription = response.data.weather[0].description;
   setWeatherDescription(weatherDescription);
 }
-
+function setWeatherDescription(newWeatherDescription) {
+  let weatherDescriptionElement = document.querySelector("#descriptionNow");
+  weatherDescriptionElement.innerHTML = newWeatherDescription;
+}
 function setWind(newWind) {
   let wind = Math.round(newWind);
   let windElement = document.querySelector("#windNow");
@@ -45,10 +48,6 @@ function setHumidity(newHumidity) {
   let humidity = Math.round(newHumidity);
   let humidityElement = document.querySelector("#humidityNow");
   humidityElement.innerHTML = `Humidity: ${humidity}%`;
-}
-function setWeatherDescription(newWeatherDescription) {
-  let weatherDescriptionElement = document.querySelector("#descriptionNow");
-  weatherDescriptionElement.innerHTML = newWeatherDescription;
 }
 
 function getTemperature(cityName) {
