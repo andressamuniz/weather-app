@@ -17,6 +17,11 @@ let minutes = currentTime.getMinutes();
 
 timeNow.innerHTML = `${day}, ${hours}:${minutes}`;
 
+function setCityName(newCityName) {
+  let locationNowElement = document.querySelector("#locationNow");
+  locationNowElement.innerHTML = newCityName;
+}
+
 function setTemperature(newTemperature) {
   let temperature = Math.round(newTemperature);
   let temperatureElement = document.querySelector("#temperature-now");
@@ -34,6 +39,11 @@ function getWeatherData(response) {
 
   let weatherDescription = response.data.weather[0].description;
   setWeatherDescription(weatherDescription);
+
+  let newCityName = response.data.name;
+  setCityName(newCityName);
+
+  celsiusTemperature = response.data.main.temp;
 }
 function setWeatherDescription(newWeatherDescription) {
   let weatherDescriptionElement = document.querySelector("#descriptionNow");
@@ -59,10 +69,31 @@ function getTemperature(cityName) {
 function yourLocationSearch(event) {
   event.preventDefault();
   let searchInput = document.querySelector("#locationInput");
-  let searchCity = document.querySelector("#locationNow");
-  searchCity.innerHTML = searchInput.value;
 
   getTemperature(searchInput.value);
 }
+
+function showFahrenheitTemperature(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#temperature-now");
+  let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
+  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
+}
+function showCelsiusTemperature(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#temperature-now");
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
+}
+
+let celsiusTemperature = 20;
+
 let form = document.querySelector("#currentForm");
 form.addEventListener("submit", yourLocationSearch);
+
+let fahrenheitLink = document.querySelector("#fahrenheit-link");
+fahrenheitLink.addEventListener("click", showFahrenheitTemperature);
+
+let celsiusLink = document.querySelector("#celsius-link");
+celsiusLink.addEventListener("click", showCelsiusTemperature);
+
+getTemperature("Toronto");
