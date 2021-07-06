@@ -3,7 +3,7 @@ body {
 }
 
 .card {
-  background: #d5eeff;
+  background: #80bbff;
   max-width: fit-content;
 }
 .weather-container {
@@ -90,7 +90,7 @@ body {
   padding-left: 5px;
   border: 1px transparent;
   border-radius: 5px;
-  background: whitesmoke;
+  background: lightsalmon;
   color: black;
 }
 .emoji {
